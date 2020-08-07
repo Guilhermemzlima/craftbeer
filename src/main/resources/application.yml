@@ -1,3 +1,24 @@
+# Database connection username and password
+spring:
+  datasource:
+    url:
+    username: admin
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        temp:
+          use_jdbc_metadata_defaults: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
 server:
   port: 9000
   context-path: /beerhouse
