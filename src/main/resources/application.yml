@@ -1,10 +1,10 @@
 # Database connection username and password
 spring:
   datasource:
-    url:
+    url: jdbc:mysql://beer.cdahouwwyloj.us-east-2.rds.amazonaws.com:3306/beer
     username: admin
-    password:
-    driver-class-name: com.mysql.jdbc.Driver
+    password: SenhaSenha
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:
       hibernate:

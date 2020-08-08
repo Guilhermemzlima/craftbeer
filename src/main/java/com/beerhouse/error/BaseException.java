@@ -28,9 +28,9 @@ public class BaseException extends Exception {
   @Override
   public String toString() {
     return "BaseException{" +
-        "tipo='" + tipo + '\'' +
-        ", mensagem='" + mensagem + '\'' +
-        ", codigo=" + codigo +
+        "type='" + type + '\'' +
+        ", message='" + message + '\'' +
+        ", code=" + code +
         '}';
   }
 }

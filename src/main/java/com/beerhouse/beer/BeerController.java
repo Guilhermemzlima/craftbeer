@@ -18,16 +18,18 @@ public class BeerController {
   private BeerRepository beerRepository;
 
   private BeerService beerService;
+
   @Autowired
   public BeerController(BeerService beerService) {
     this.beerService = beerService;
   }
 
-  @GetMapping("/id")
-  public ResponseEntity<BeerModel> getBeerById(@PathVariable Integer id){
+  @GetMapping("/{id}")
+  public ResponseEntity<BeerModel> getBeerById(@PathVariable Integer id) {
     BeerModel beerModel = beerService.getBeerById(id);
     return ResponseEntity.ok(beerModel);
   }
+
   @PostMapping
   public BeerModel postBeer(@RequestBody BeerModel beerModel) {
     return beerService.saveBeer(beerModel);
