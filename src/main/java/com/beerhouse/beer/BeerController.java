@@ -68,6 +68,5 @@ public class BeerController {
   public ResponseEntity<?> removeBeer(@PathVariable Integer id) throws NotFoundException {
     beerService.removeBeer(id);
     return ResponseEntity.noContent().build();
-
   }
 }

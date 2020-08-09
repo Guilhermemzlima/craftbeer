@@ -16,7 +16,7 @@ public class BeerService {
 
 
   @Autowired
-  public BeerService(BeerRepository beerRepository,BeerMapper beerMapper) {
+  public BeerService(BeerRepository beerRepository, BeerMapper beerMapper) {
     this.beerRepository = beerRepository;
     this.beerMapper = beerMapper;
 
@@ -35,9 +35,8 @@ public class BeerService {
     beerModelRequest.setId(id);
     beerRepository.findById(id)
         .orElseThrow(() -> new NotFoundException(
-            "Sorry, item not found "));
+            "Desculpe, Cerveja não encontrada"));
     return beerRepository.save(beerModelRequest);
-
   }
 
   public BeerModel patchBeer(Integer id, BeerUpdateDTO beerUpdateDTO) throws NotFoundException {
