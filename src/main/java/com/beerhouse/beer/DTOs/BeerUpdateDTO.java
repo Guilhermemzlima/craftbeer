@@ -1,41 +1,26 @@
-package com.beerhouse.beer;
+package com.beerhouse.beer.DTOs;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 
-
-@Entity
-@Table(name = "Beer")
-public class BeerModel implements Serializable {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
-  @NotNull
-  @NotEmpty
+public class BeerUpdateDTO {
   private String name;
-  @NotNull
-  @NotEmpty
   private String ingredients;
-  @NotNull
-  @NotEmpty
   @Length(max = 20)
   private String alcoholContent;
   private Double price;
-  @NotNull
-  @NotEmpty
   @Length(max = 60)
   private String category;
 
-  public Integer getId() {
-    return id;
+  public BeerUpdateDTO(String name, String ingredients, String alcoholContent, Double price,
+      String category) {
+    this.name = name;
+    this.ingredients = ingredients;
+    this.alcoholContent = alcoholContent;
+    this.price = price;
+    this.category = category;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public BeerUpdateDTO() {
   }
 
   public String getName() {

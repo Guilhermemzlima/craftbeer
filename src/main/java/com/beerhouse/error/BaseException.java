@@ -1,6 +1,6 @@
 package com.beerhouse.error;
 
-public class BaseException extends Exception {
+public abstract class BaseException extends Exception {
 
   protected final String type;
   protected final String message;

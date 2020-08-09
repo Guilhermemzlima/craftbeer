@@ -22,3 +22,4 @@ spring:
 server:
   port: 9000
   context-path: /beerhouse
+baseurl: http://localhost:9000/beerhouse
