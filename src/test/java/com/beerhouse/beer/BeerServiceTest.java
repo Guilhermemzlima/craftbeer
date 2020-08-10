@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import com.beerhouse.beer.DTOs.BeerUpdateDTO;
 import com.beerhouse.error.NotFoundException;
+import com.beerhouse.utils.Constants;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -20,7 +21,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest(classes = BeerService.class)
 public class BeerServiceTest {
 
-  //private static final String NAME = "Nome cadastrado pelo JUnit";
 
   @InjectMocks
   private BeerService beerService;
@@ -66,6 +66,21 @@ public class BeerServiceTest {
   }
 
   @Test
+  public void getBeerByIdNotFound() throws NotFoundException {
+    BeerModel beerModel = getBeerModel();
+    beerModel.setId(3);
+    when(beerRepository.findById(3)).thenReturn(java.util.Optional.empty());
+    try {
+      BeerModel beerModel1 = beerService.getBeerById(3);
+    } catch (NotFoundException e) {
+      assertEquals(e.getCode().intValue(), 404);
+      assertEquals(e.getErrorMessage(),  Constants.BEER_NOT_FIND);
+    } catch (Exception e) {
+      fail("not expected error");
+    }
+  }
+
+  @Test
   public void putBeer() throws NotFoundException {
     BeerModel beerModel = getBeerModel();
     beerModel.setId(3);
@@ -76,7 +91,7 @@ public class BeerServiceTest {
   }
 
   @Test
-  public void putBeerError() throws NotFoundException {
+  public void putBeerNotFound() throws NotFoundException {
     BeerModel beerModel = getBeerModel();
     beerModel.setId(3);
     when(beerRepository.findById(3)).thenReturn(java.util.Optional.empty());
@@ -85,7 +100,7 @@ public class BeerServiceTest {
       BeerModel beerModel1 = beerService.putBeer(3, beerModel);
     } catch (NotFoundException e) {
       assertEquals(e.getCode().intValue(), 404);
-      assertEquals(e.getErrorMessage(), "Desculpe, Cerveja não encontrada");
+      assertEquals(e.getErrorMessage(),  Constants.BEER_NOT_FIND);
     } catch (Exception e) {
       fail("not expected error");
     }
@@ -102,6 +117,39 @@ public class BeerServiceTest {
     when(beerRepository.save(beerModel)).thenReturn(beerModel);
     BeerModel beerModel1 = beerService.patchBeer(3, beerUpdateDTO);
     assertEquals(beerModel1.getIngredients(), beerUpdateDTO.getIngredients());
+  }
+  @Test
+  public void patchBeerNotFound() throws NotFoundException {
+    BeerModel beerModel = getBeerModel();
+    beerModel.setId(3);
+    BeerUpdateDTO beerUpdateDTO = new BeerUpdateDTO();
+    beerUpdateDTO.setIngredients("ingrediente atualizado");
+    when(beerRepository.findById(3)).thenReturn(java.util.Optional.of(beerModel));
+    beerModel.setIngredients(beerUpdateDTO.getIngredients());
+    when(beerRepository.save(beerModel)).thenReturn(beerModel);
+    try {
+      BeerModel beerModel1 = beerService.patchBeer(3, beerUpdateDTO);
+    } catch (NotFoundException e) {
+      assertEquals(e.getCode().intValue(), 404);
+      assertEquals(e.getErrorMessage(), Constants.BEER_NOT_FIND);
+    } catch (Exception e) {
+      fail("not expected error");
+    }  }
+
+  @Test
+  public void removeBeerError() throws NotFoundException {
+    BeerModel beerModel = getBeerModel();
+    beerModel.setId(3);
+    when(beerRepository.findById(3)).thenReturn(java.util.Optional.empty());
+    doNothing().when(beerRepository).delete(3);
+    try {
+      beerService.removeBeer(3);
+    } catch (NotFoundException e) {
+      assertEquals(e.getCode().intValue(), 404);
+      assertEquals(e.getErrorMessage(),  Constants.BEER_NOT_FIND);
+    } catch (Exception e) {
+      fail("not expected error");
+    }
   }
 
   @Test

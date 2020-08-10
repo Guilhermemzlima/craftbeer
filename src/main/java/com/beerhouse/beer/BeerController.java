@@ -32,23 +32,20 @@ public class BeerController {
   @GetMapping("/{id}")
   public ResponseEntity<BeerModel> getBeerById(@Valid @PathVariable Integer id)
       throws NotFoundException {
-    BeerModel beerModel = beerService.getBeerById(id);
-    return ResponseEntity.ok(beerModel);
+    return ResponseEntity.ok(beerService.getBeerById(id));
   }
 
   @GetMapping
   public ResponseEntity<List<BeerModel>> getBeers() {
-    List<BeerModel> beerModel = beerService.getBeers();
-    return ResponseEntity.ok(beerModel);
+    return ResponseEntity.ok(beerService.getBeers());
   }
 
   @PostMapping
   public ResponseEntity<BeerModel> postBeer(@Valid @RequestBody BeerModel beerModel)
       throws Exception {
-    BeerModel beerCreated = beerService.saveBeer(beerModel);
     return ResponseEntity
         .status(HttpStatus.CREATED)
-        .body(beerCreated);
+        .body(beerService.saveBeer(beerModel));
   }
 
   @PutMapping("/{id}")

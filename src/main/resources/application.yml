@@ -1,9 +1,9 @@
 # Database connection username and password
 spring:
   datasource:
-    url: jdbc:mysql://beer.cdahouwwyloj.us-east-2.rds.amazonaws.com:3306/beer
-    username: admin
-    password: SenhaSenha
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:
@@ -18,8 +18,6 @@ spring:
     hibernate:
       ddl-auto: update
     open-in-view: false
-
 server:
   port: 9000
   context-path: /beerhouse
-baseurl: http://localhost:9000/beerhouse

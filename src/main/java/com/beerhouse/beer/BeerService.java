@@ -2,6 +2,7 @@ package com.beerhouse.beer;
 
 import com.beerhouse.beer.DTOs.BeerUpdateDTO;
 import com.beerhouse.error.NotFoundException;
+import com.beerhouse.utils.Constants;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,14 +27,14 @@ public class BeerService {
 
   public BeerModel getBeerById(Integer id) throws NotFoundException {
     return beerRepository.findById(id).orElseThrow(() -> new NotFoundException(
-        "Desculpe, Cerveja não encontrada"));
+        Constants.BEER_NOT_FIND));
   }
 
   public BeerModel putBeer(Integer id, BeerModel beerModelRequest) throws NotFoundException {
     beerModelRequest.setId(id);
     beerRepository.findById(id)
         .orElseThrow(() -> new NotFoundException(
-            "Desculpe, Cerveja não encontrada"));
+            Constants.BEER_NOT_FIND));
     return beerRepository.save(beerModelRequest);
   }
 
@@ -41,7 +42,7 @@ public class BeerService {
 
     BeerModel beerModel = beerRepository.findById(id)
         .orElseThrow(() -> new NotFoundException(
-            "Sorry, item not found "));
+            Constants.BEER_NOT_FIND));
     beerMapper.updateBeerFromDto(beerUpdateDTO, beerModel);
     return beerRepository.save(beerModel);
 
@@ -50,7 +51,7 @@ public class BeerService {
   public void removeBeer(Integer id) throws NotFoundException {
     beerRepository.findById(id)
         .orElseThrow(() -> new NotFoundException(
-            "Desculpe, Cerveja não encontrada"));
+            Constants.BEER_NOT_FIND));
     beerRepository.delete(id);
 
   }
