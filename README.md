@@ -5,5 +5,9 @@ Esse projeto esta utilizando MySQL em sua versão 8.0.21, por conta disso será 
 
 ``` create database beer ```
 
-Clique [Aqui](https://www.getpostman.com/collections/59a55bd757efccefe45d) para baixar colecion no postman, (Projeto esta rodando no path /beerhouse e na porta 9000)  
+Clique [Aqui](https://www.getpostman.com/collections/59a55bd757efccefe45d) para baixar colecion no postman apontando para o ambiente local, (Projeto esta rodando no path /beerhouse e na porta 9000)  
 
+
+Aplicação tambem está disponivel temporariamente disponivel para acesso no link http://craftbeer.us-east-2.elasticbeanstalk.com
+
+Clique [Aqui](https://www.getpostman.com/collections/59a55bd757efccefe45d) para baixar colecion no postman apontando para o ambiente na AWS, (Projeto esta rodando no path /beerhouse e na porta 80) 
