@@ -1,6 +1,7 @@
-package com.beerhouse.beer.DTOs;
+package com.beerhouse.beer;
 
 import com.beerhouse.beer.BeerModel;
+import com.beerhouse.beer.DTOs.BeerUpdateDTO;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

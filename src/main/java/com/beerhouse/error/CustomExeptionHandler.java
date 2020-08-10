@@ -13,12 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 @ControllerAdvice
 public class CustomExeptionHandler {
 
-  @ExceptionHandler(value = BaseException.class)
-  public ResponseEntity<ErrorDetails> illegalArgumentExceptionHandler(BaseException e) {
-    ErrorDetails errorDetails = new ErrorDetails(e.getCause().getCause().getMessage(),
-        e.getType(), e.getCode());
+  @ExceptionHandler(value = Exception.class)
+  public ResponseEntity<ErrorDetails> ExceptionHandler(Exception e) {
+    ErrorDetails errorDetails = new ErrorDetails(e.getMessage(),
+        HttpStatus.INTERNAL_SERVER_ERROR.name(), HttpStatus.INTERNAL_SERVER_ERROR.value());
     return ResponseEntity.status(errorDetails.getCode()).body(errorDetails);
   }
 
+  @ExceptionHandler(value = BaseException.class)
+  public ResponseEntity<ErrorDetails> BaseExceptionHandler(BaseException e) {
+    ErrorDetails errorDetails = new ErrorDetails(e.getErrorMessage(),
+        e.getType(), e.getCode());
+    return ResponseEntity.status(errorDetails.getCode()).body(errorDetails);
+  }
 
 }

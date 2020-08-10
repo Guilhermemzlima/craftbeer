@@ -3,13 +3,13 @@ package com.beerhouse.error;
 public abstract class BaseException extends Exception {
 
   protected final String type;
-  protected final String message;
+  protected final String errorMessage;
   protected final Integer code;
 
-  public BaseException(String type, String message, Integer code) {
+  public BaseException(String type, String errorMessage, Integer code) {
     super();
     this.type = type;
-    this.message = message;
+    this.errorMessage = errorMessage;
     this.code = code;
   }
 
@@ -17,8 +17,8 @@ public abstract class BaseException extends Exception {
     return type;
   }
 
-  public String getMessages() {
-    return message;
+  public String getErrorMessage() {
+    return errorMessage;
   }
 
   public Integer getCode() {
@@ -29,7 +29,7 @@ public abstract class BaseException extends Exception {
   public String toString() {
     return "BaseException{" +
         "type='" + type + '\'' +
-        ", message='" + message + '\'' +
+        ", message='" + errorMessage + '\'' +
         ", code=" + code +
         '}';
   }

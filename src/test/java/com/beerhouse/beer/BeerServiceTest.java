@@ -6,12 +6,10 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.beerhouse.beer.DTOs.BeerMapper;
 import com.beerhouse.beer.DTOs.BeerUpdateDTO;
 import com.beerhouse.error.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -87,7 +85,7 @@ public class BeerServiceTest {
       BeerModel beerModel1 = beerService.putBeer(3, beerModel);
     } catch (NotFoundException e) {
       assertEquals(e.getCode().intValue(), 404);
-      assertEquals(e.getMessages(), "Desculpe, Cerveja não encontrada");
+      assertEquals(e.getErrorMessage(), "Desculpe, Cerveja não encontrada");
     } catch (Exception e) {
       fail("not expected error");
     }

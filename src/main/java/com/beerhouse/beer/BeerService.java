@@ -1,10 +1,8 @@
 package com.beerhouse.beer;
 
-import com.beerhouse.beer.DTOs.BeerMapper;
 import com.beerhouse.beer.DTOs.BeerUpdateDTO;
 import com.beerhouse.error.NotFoundException;
 import java.util.List;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +50,7 @@ public class BeerService {
   public void removeBeer(Integer id) throws NotFoundException {
     beerRepository.findById(id)
         .orElseThrow(() -> new NotFoundException(
-            "Sorry, item not found "));
+            "Desculpe, Cerveja não encontrada"));
     beerRepository.delete(id);
 
   }
